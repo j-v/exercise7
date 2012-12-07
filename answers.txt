@@ -1,0 +1,9 @@
+WBI ex 7
+
+1. 
+Deutschland is a "Land"
+"Hauptstadt_von" is a property that a "Stadt" can have. The value of the property must be a "Land".
+"Land" is a class. It is described in English by the label "country"
+Berlin is a "Stadt" that is the Haputdstadt of Deutschland.
+"Stadt" is a class. It is described in English by the label "city"
+

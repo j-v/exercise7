@@ -1,0 +1,29 @@
+
+get 50 soccer players
+SELECT ?x ?name
+WHERE
+{ 
+ ?x foaf:name ?name .
+ ?x rdf:type <http://dbpedia.org/ontology/SoccerPlayer>
+} LIMIT 50
+
+Get teams from PL
+SELECT ?team
+WHERE {
+ ?team dbpedia-owl:league <http://dbpedia.org/resource/Premier_League> .
+ ?team rdf:type <http://dbpedia.org/ontology/SoccerClub>
+}
+
+SELECT DISTINCT  ?player {
+?s foaf:page ?player.
+?s rdf:type <http://dbpedia.org/ontology/SoccerPlayer> .
+?s dbpedia2:position ?position .
+?s <http://dbpedia.org/property/clubs> ?club .
+?club <http://dbpedia.org/ontology/capacity> ?cap .
+?s <http://dbpedia.org/ontology/birthPlace> ?place .
+?place ?population ?pop.
+OPTIONAL {?s <http://dbpedia.org/ontology/number> ?tricot.}
+Filter (?population in (<http://dbpedia.org/property/populationEstimate>, <http://dbpedia.org/property/populationCensus>, <http://dbpedia.org/property/statPop> ))
+Filter (xsd:int(?pop) >10000000 ) .
+Filter (xsd:int(?cap) <40000 ) .
+Filter (?position = "Goalkeeper"@en || ?position = <http://dbpedia.org/resource/Goalkeeper_%28association_football%29> || ?position = <http://dbpedia.org/resource/Goalkeeper_%28football%29>)
