@@ -7,3 +7,51 @@ Deutschland is a "Land"
 Berlin is a "Stadt" that is the Haputdstadt of Deutschland.
 "Stadt" is a class. It is described in English by the label "city"
 
+2. 
+
+a) Any pizza is food
+
+Yes I think so, express that pizza is a subclass of food
+
+EXAMPLE
+
+<rdf:Class rdf:ID="Food">
+ <rdf:comment>People all around the world enjoy food.</rdfs:comment>
+</rdf:Class>
+<rdf:Class rdf:ID="Pizza">
+ <rdf:comment>Some people are not fortunate enough to enjoy Pizza.</rdfs:comment>
+ <rdf:subClassOf rdf:resource="#Food"/>
+</rdf:Class>
+
+b) Pizzas always have at least two toppings
+No, RDF(S) cannot express cardinality constraints.
+
+c) Any pizza of the class PizzaMargherita has tomato as a topping
+Don't think so, RDF(S) cannot express existence constraints.
+
+d)Everything that has a topping is a pizza
+hmm
+Don't think so, a property can be used by any class.
+
+e) No pizza of the class PizzaMargherita has a topping of the class Meat
+ummm
+maybe something like this?
+http://stackoverflow.com/questions/10945953/rdfs-subclass-property-redefinition
+
+3.
+Use the SPARQL query language to get the name, number, birth date and current
+club of soccer players which play in the English premier league and wear the number
+10 on their jersey
+
+SELECT DISTINCT ?player ?name ?birthdate ?number ?teamname 
+WHERE {
+ ?player foaf:name ?name .
+ ?player dbpedia2:clubnumber 10 .
+ ?player dbpedia2:clubnumber ?number .
+ ?player dbpedia2:currentclub ?team .
+ ?player <http://dbpedia.org/ontology/birthDate> ?birthdate .
+ ?team dbpedia-owl:league <http://dbpedia.org/resource/Premier_League> .
+ ?team rdf:type <http://dbpedia.org/ontology/SoccerClub> .
+ ?team foaf:name ?teamname
+}
+

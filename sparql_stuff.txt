@@ -14,6 +14,8 @@ WHERE {
  ?team rdf:type <http://dbpedia.org/ontology/SoccerClub>
 }
 
+doesn't seem to work, example taken from DBPedia:
+
 SELECT DISTINCT  ?player {
 ?s foaf:page ?player.
 ?s rdf:type <http://dbpedia.org/ontology/SoccerPlayer> .
@@ -27,3 +29,4 @@ Filter (?population in (<http://dbpedia.org/property/populationEstimate>, <http:
 Filter (xsd:int(?pop) >10000000 ) .
 Filter (xsd:int(?cap) <40000 ) .
 Filter (?position = "Goalkeeper"@en || ?position = <http://dbpedia.org/resource/Goalkeeper_%28association_football%29> || ?position = <http://dbpedia.org/resource/Goalkeeper_%28football%29>)
+}
